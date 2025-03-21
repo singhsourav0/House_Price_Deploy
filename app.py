@@ -2,7 +2,11 @@ from flask import Flask, render_template, request, jsonify
 import pickle
 import pandas as pd
 import numpy as np
-print("hello1")
+
+from recommendation import recommend
+from analytics import analyze_data
+from insights import get_insight
+
 app = Flask(__name__)
 
 # Load Data and Model

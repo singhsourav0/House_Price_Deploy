@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>FindFlat in Gurugram</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+		
+		<!-- CSS Files (Updated to Flask Static Path) -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/open-iconic-bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/ionicons.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.timepicker.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		</head>
+		
+		
+  </head>
+  <body>
+    
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Gurugram Housing</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Recommendation</a></li>
+	          <li class="nav-item"><a href="" class="nav-link">Analytics Module</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Insight Data</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+    
+	<div class="hero-wrap" style="background-image: url('{{ url_for("static", filename="images/bg_2.jpg") }}')" data-stellar-background-ratio="0.5">
+		<!-- <img src="{{ url_for('static', filename='images/bg_2.jpg') }}" alt="Image"> -->
+      <div class="overlay"></div>
+      <div class="overlay-2"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
+          	<div class="text text-center w-100">
+	            <h1 class="mb-4">Find True Value of<br>Your Home Before Buy or Sell!</h1>
+	            <!-- <p><a href="#" class="btn btn-primary py-3 px-4"><span class="ftco-section ftco-no-pb">Search and Predict Prices</span></a></p> -->
+				<!-- <div class="mouse">
+				<a href="#" class="btn btn-primary py-3 px-4">
+					<div class="mouse-wheel"><span class="ftco-section ftco-no-pb"></span></div>
+				</a>
+			</div> -->
+			<p>
+				<a href="#search-section" class="btn btn-primary py-3 px-4">
+					<span>Search and Predict Prices</span>
+				</a>
+			</p>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <div class="mouse">
+				<a href="#" class="mouse-icon">
+					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+				</a>
+			</div>
+    </div>
+
+    
+	<section id="search-section" class="ftco-section ftco-no-pb">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="search-wrap-1 ftco-animate">
+						<form id="searchForm">
+
+							<!-- Row 1 -->
+						<div class="row">
+							<div class="col-md-3 col-lg-3">
+								<div class="form-group">
+									<label for="property_type">Property Type</label>
+									<select id="property_type" class="form-control">
+										<option value="flat">Flat</option>
+										<option value="house">House</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-lg-3">
+								<div class="form-group">
+									<label for="sector">Sector</label>
+									<select id="sector" class="form-control">
+										<option value="">Select Sector</option>
+										{% for sector in sectors %}
+										<option value="{{ sector }}">{{ sector }}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-lg-3">
+								<div class="form-group">
+									<label for="bedrooms">Bedrooms</label>
+									<input type="number" id="bedrooms" class="form-control" min="1" max="100">
+								</div>
+							</div>
+
+							<div class="col-md-3 col-lg-3">
+								<div class="form-group">
+									<label for="bathroom">Bathrooms</label>
+									<input type="number" id="bathroom" class="form-control" min="1" max="100">
+								</div>
+							</div>
+						</div>
+
+							<!-- Row 2 -->
+							<div class="row">
+								<!-- Balconies -->
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="balcony">Balconies</label>
+										<select id="balcony" class="form-control">
+											<option value="">0</option>
+											{% for balcony in balconies %}
+												<option value="{{ balcony }}">{{ balcony }}</option>
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+							
+	
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="property_age">Property Age</label>
+										<select id="property_age" class="form-control">
+											<option value="Moderately Old">Moderately Old</option>
+											<option value="New Property">New Property</option>
+											<option value="Old Property">Old Property</option>
+											<option value="Relatively New">Relatively New</option>
+											<option value="Under Construction">Under Construction</option>
+										</select>
+									</div>
+								</div>
+								
+	
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="built_up_area">Built-Up Area (sq ft)</label>
+										<input type="number" id="built_up_area" class="form-control" min="200" max="100000">
+									</div>
+								</div>
+	
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="servant_room">Servant Room</label>
+										<select id="servant_room" class="form-control">
+											<option value="0">No</option>
+											<option value="1">Yes</option>
+										</select>
+									</div>
+								</div>
+							</div>
+	
+							<!-- Row 3 -->
+							<div class="row">
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="store_room">Store Room</label>
+										<select id="store_room" class="form-control">
+											<option value="0">No</option>
+											<option value="1">Yes</option>
+										</select>
+									</div>
+								</div>
+	
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="furnishing_type">Furnishing Type</label>
+										<select id="furnishing_type" class="form-control">
+											<option value="unfurnished">Unfurnished</option>
+											<option value="semifurnished">Semi-Furnished</option>
+											<option value="furnished">Fully-Furnished</option>
+										</select>
+									</div>
+								</div>
+	
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="luxury_category">Luxury Category</label>
+										<select id="luxury_category" class="form-control">
+											<option value="Low">Standard</option>
+											<option value="Medium">Luxury</option>
+											<option value="High">Ultra Luxury</option>
+										</select>
+									</div>
+								</div>
+	
+								<div class="col-md-3 col-lg-3">
+									<div class="form-group">
+										<label for="floor_category">Floor Category</label>
+										<select id="floor_category" class="form-control">
+											<option value="Low Floor">Low Floor</option>
+											<option value="Mid Floor">Mid Floor</option>
+											<option value="High Floor">High Floor</option>
+										</select>
+									</div>
+								</div>
+							</div>
+	
+							<!-- Search Button -->
+							<div class="col-md-3 col-lg-3 align-self-end">
+								<div class="form-group">
+									<input type="submit" value="Search & Predict" class="form-control btn btn-primary" style="display: block; margin: 0 auto; width: 200px;">
+
+									<h3 id="result"></h3>  <!-- Output will be displayed here -->
+								</div>
+							</div>
+							
+							</div>
+	
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<script>
+		$(document).ready(function () {
+			$("#searchForm").submit(function (event) {
+			event.preventDefault();
+			$("#result").text("Search results will be displayed here.");  
+
+			var formData = {
+				property_type: $("#property_type").val(),
+				sector: $("#sector").val(),
+				bedroom: $("#bedrooms").val(),
+				bathroom: $("#bathroom").val(),
+				balcony: $("#balcony").val(),
+				property_age: $("#property_age").val(),
+				built_up_area: $("#built_up_area").val(),
+				servant_room: $("#servant_room").val(),
+				store_room: $("#store_room").val(),
+				furnishing_type: $("#furnishing_type").val(),
+				luxury_category: $("#luxury_category").val(),
+				floor_category: $("#floor_category").val()
+			};
+	
+			console.log("Sending data:", formData); // ✅ Debugging line
+	
+			$.ajax({
+				type: "POST",
+				url: "/predict", 
+				data: formData,
+				success: function (response) {
+					console.log("Response:", response);  // ✅ Debugging line
+	
+					if (response.prediction) {
+						$("#result").html(response.prediction).css("color", "green");
+					} else {
+						$("#result").html("Error: " + response.error).css("color", "red");
+					}
+				},
+				error: function (xhr, status, error) {
+					console.log("AJAX Error:", error);  // ✅ Debugging line
+					$("#result").html("Failed to get response from server").css("color", "red");
+				}
+			});
+		});
+	});
+</script>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+    
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Gurugram Housing</h2>
+              <p>Property details from 99acres.com may change. Verify availability and prices before making decisions.</p>
+              <ul class="ftco-footer-social list-unstyled mt-5">
+                <li class="ftco-animate"><a href="https://x.com/singhsourav0" target="_blank"><span class="icon-twitter"></span></a></li>
+				<li class="ftco-animate"><a href="https://github.com/singhsourav0" target="_blank"><span class="icon-github"></span></a></li>
+				<li class="ftco-animate"><a href="https://instagram.com/singhsourav0" target="_blank"><span class="icon-instagram"></span></a></li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Services Offered</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Get Recommendation</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Get Insights</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Property Analytics</a></li>
+                <li><a href="#search-section"><span class="icon-long-arrow-right mr-2"></span>Predict Prices</a></li>
+              </ul>
+            </div>
+          </div>
+          
+    
+          <div class="col-md">
+			<div class="ftco-footer-widget mb-4">
+			  <h2 class="ftco-heading-2">About</h2>
+			  <ul class="list-unstyled">
+				<li><a href="#"><span class="icon-info-circle mr-2"></span> Project Overview</a></li>
+				<li><a href="#"><span class="icon-database mr-2"></span> Data Source</a></li>
+				<li><a href="#"><span class="icon-user mr-2"></span> Developer Profile</a></li>
+				<li><a href="#"><span class="icon-github mr-2"></span> Source Code</a></li>
+			  </ul>
+			</div>
+		  
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Want to connect ?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">BPMCE Bihar India</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+916205208204</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">souravkumar8432@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+	
+            <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> 
+				All rights reserved | Made with ❤️ by 
+				<strong><a href="https://iamsourav.xyz" target="_blank" style="color: #f4f8f8;">Sourav Kumar</a></strong>
+				</p>
+				
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script> 
+	<script src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.animateNumber.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.timepicker.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/scrollax.min.js') }}"></script>
+
+	<!-- Google Maps (Keep External Link As Is) -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+
+	<script src="{{ url_for('static', filename='js/google-map.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  </body>
+</html>

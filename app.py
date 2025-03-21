@@ -16,11 +16,11 @@ with open("df.pkl", "rb") as file:
 with open("pipeline.pkl", "rb") as file:
     pipeline = pickle.load(file)
     
-print("hello2")
+# print("hello2")
 @app.route("/")
 def home():
     """Render the home page with dropdown options."""
-    print("hello3")
+    # print("hello3")
     return render_template(
         "index.html",
         sectors=sorted(df["sector"].unique().tolist()),
@@ -39,7 +39,7 @@ def predict():
     """Predicts the price of the property based on user input."""
     try:
         data = request.form
-        print("hello4")
+        # print("hello4")
 
         # Ensure all required fields are present
         required_fields = [
@@ -83,16 +83,16 @@ def predict():
 
         # Predict
         predicted_price = pipeline.predict(one_df)
-        print("hello6")
-        print("Received Data:", data)
-        print("Predicted Price:", predicted_price)
-        print("hello6")
+        # print("hello6")
+        # print("Received Data:", data)
+        # print("Predicted Price:", predicted_price)
+        # print("hello6")
         base_price = np.expm1(predicted_price)[0]  # Apply inverse log transformation
 
         # Compute the range
         low = round(base_price - 0.22, 2)
         high = round(base_price + 0.22, 2)
-        print("hello7")
+        # print("hello7")
 
         return jsonify({"prediction": f"The price of the flat is between {low} Cr and {high} Cr"})
 

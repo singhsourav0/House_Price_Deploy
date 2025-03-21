@@ -1,0 +1,12 @@
+# Ignore Conda environment files
+conda_env.yml
+*.conda
+*.env
+*.yaml
+*.yml
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+		<link rel="stylesheet" href='{{ url_for("static", filename="css/aos.css") }}'>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/ionicons.min.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.timepicker.css') }}">
@@ -131,7 +131,7 @@
 									<div class="form-group">
 										<label for="balcony">Balconies</label>
 										<select id="balcony" class="form-control">
-											<option value="">0</option>
+											<option value="">No. of</option>
 											{% for balcony in balconies %}
 												<option value="{{ balcony }}">{{ balcony }}</option>
 											{% endfor %}
@@ -219,13 +219,16 @@
 							</div>
 	
 							<!-- Search Button -->
+							
+							<!-- Search Button -->
 							<div class="col-md-3 col-lg-3 align-self-end">
 								<div class="form-group">
-									<input type="submit" value="Search & Predict" class="form-control btn btn-primary" style="display: block; margin: 0 auto; width: 200px;">
+									<input type="submit" value="Search & Predict" class="form-control btn btn-primary" 
+										style="display: block; margin: 0 auto; width: 80%; max-width: 600px;" onclick="showResult()">
 
-									<h3 id="result"></h3>  <!-- Output will be displayed here -->
 								</div>
 							</div>
+
 							
 							</div>
 	
@@ -235,7 +238,10 @@
 			</div>
 		</div>
 	</section>
-
+<!-- Result Box (Initially Hidden) -->
+<div id="result-container">
+	<span id="result"></span>
+</div>
 
 	<script>
 		$(document).ready(function () {
@@ -275,11 +281,24 @@
 				},
 				error: function (xhr, status, error) {
 					console.log("AJAX Error:", error);  // ✅ Debugging line
-					$("#result").html("Failed to get response from server").css("color", "red");
+					$("#result").html("No input, no response! Type something.").css("color", "red");
 				}
 			});
 		});
 	});
+
+
+	function showResult() {
+		let resultBox = document.getElementById("result-container");
+		let resultText = document.getElementById("result");
+	
+		// Example: Change this value based on actual prediction logic
+		resultText.innerText = "Predicted Value"; 
+	
+		resultBox.style.display = "flex"; // Show the box
+	}
+	
+	
 </script>
 	
 
